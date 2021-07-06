@@ -8,6 +8,7 @@
 
 * The `KafkaConnectS2I` resource has been removed and is no longer supported by the operator.
   Please use the [migration guide](https://strimzi.io/docs/operators/0.24.0/full/using.html#proc-migrating-kafka-connect-s2i-str) to migrate your `KafkaConnectS2I` deployments to [`KafkaConnect` Build](https://strimzi.io/docs/operators/latest/full/deploying.html#creating-new-image-using-kafka-connect-build-str) instead.
+ * Annotate Cluster Operator resource metrics by a namespace label
 
 ## 0.24.0
 
