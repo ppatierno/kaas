@@ -103,12 +103,10 @@ public class MetricsST extends AbstractST {
     private final String metricsClusterName = "metrics-cluster-name";
     private final Object lock = new Object();
     private HashMap<String, String> kafkaMetricsData;
-    private HashMap<String, String> deprecatedKafkaMetricsData;
     private HashMap<String, String> zookeeperMetricsData;
     private HashMap<String, String> kafkaConnectMetricsData;
     private HashMap<String, String> kafkaExporterMetricsData;
     private HashMap<String, String> kafkaMirrorMaker2MetricsData;
-    private HashMap<String, String> deprecatedKafkaMirrorMaker2MetricsData;
     private HashMap<String, String> kafkaBridgeMetricsData;
     private HashMap<String, String> clusterOperatorMetricsData;
     private HashMap<String, String> userOperatorMetricsData;
@@ -652,7 +650,7 @@ public class MetricsST extends AbstractST {
         // Wait for Metrics refresh/values change
         Thread.sleep(100_000);
         kafkaMetricsData = MetricsUtils.collectKafkaPodsMetrics(kafkaClientsPodName, metricsClusterName);
-        deprecatedKafkaMetricsData = MetricsUtils.collectKafkaPodsMetrics(kafkaClientsPodName, metricsClusterName);
+        HashMap<String, String> deprecatedKafkaMetricsData = MetricsUtils.collectKafkaPodsMetrics(kafkaClientsPodName, metricsClusterName);
         zookeeperMetricsData = MetricsUtils.collectZookeeperPodsMetrics(kafkaClientsPodName, metricsClusterName);
         kafkaConnectMetricsData = MetricsUtils.collectKafkaConnectPodsMetrics(kafkaClientsPodName, metricsClusterName);
         kafkaExporterMetricsData = MetricsUtils.collectKafkaExporterPodsMetrics(kafkaClientsPodName, metricsClusterName);
