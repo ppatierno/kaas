@@ -19,7 +19,6 @@ public class KafkaUserTemplates {
 
     private KafkaUserTemplates() {}
 
-
     public static MixedOperation<KafkaUser, KafkaUserList, Resource<KafkaUser>> kafkaUserClient() {
         return Crds.kafkaUserOperation(ResourceManager.kubeClient().getClient());
     }
@@ -52,6 +51,11 @@ public class KafkaUserTemplates {
                 .withNamespace(ResourceManager.kubeClient().getNamespace())
                 .addToLabels(Labels.STRIMZI_CLUSTER_LABEL, clusterName)
             .endMetadata();
+    }
+
+    public static KafkaUser kafkaUserWithoutWait(KafkaUser user) {
+        kafkaUserClient().inNamespace(ResourceManager.kubeClient().getNamespace()).createOrReplace(user);
+        return user;
     }
 
     public static KafkaUserBuilder userWithQuotas(KafkaUser user, Integer prodRate, Integer consRate, Integer requestPerc, Double mutRate) {
